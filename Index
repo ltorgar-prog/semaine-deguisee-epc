@@ -1,452 +1,265 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>EPC Fribourg — Semaine Déguisée Carnaval (Jeux-Vidéos)</title>
-  <meta name="description" content="Semaine déguisée EPC Fribourg — thème Jeux-Vidéos — du 09 au 13 février. Concours du meilleur déguisement avec une carte cadeau Fnac 50.-." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semaine Déguisée - EPC Fribourg</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Police Google (sobre, moderne) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-  <style>
-    :root{
-      --bg: #0b1020;
-      --card: rgba(255,255,255,.08);
-      --card2: rgba(255,255,255,.06);
-      --stroke: rgba(255,255,255,.14);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.74);
+        .container {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
 
-      /* Palette Carnaval (colorée mais sobre) */
-      --c1:#7c4dff; /* violet */
-      --c2:#00d3ff; /* cyan */
-      --c3:#ff4fd8; /* rose */
-      --c4:#ffb020; /* orange */
-      --c5:#22c55e; /* vert */
-    }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body{
-      margin:0;
-      font-family: "Outfit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(1200px 600px at 15% 10%, rgba(124,77,255,.35), transparent 60%),
-        radial-gradient(900px 500px at 85% 15%, rgba(0,211,255,.28), transparent 60%),
-        radial-gradient(900px 600px at 65% 85%, rgba(255,79,216,.22), transparent 60%),
-        radial-gradient(700px 450px at 18% 85%, rgba(255,176,32,.18), transparent 60%),
-        linear-gradient(180deg, #070a14, var(--bg));
-      overflow-x:hidden;
-    }
+        .header::before {
+            content: '🎮';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            top: -20px;
+            right: -20px;
+            animation: float 3s ease-in-out infinite;
+        }
 
-    /* Confettis discrets (sans too-much) */
-    .confetti{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .35;
-      background-image:
-        radial-gradient(circle at 10% 20%, rgba(255,255,255,.18) 0 2px, transparent 3px),
-        radial-gradient(circle at 40% 80%, rgba(255,255,255,.12) 0 2px, transparent 3px),
-        radial-gradient(circle at 75% 30%, rgba(255,255,255,.10) 0 2px, transparent 3px),
-        radial-gradient(circle at 90% 70%, rgba(255,255,255,.12) 0 2px, transparent 3px),
-        radial-gradient(circle at 20% 60%, rgba(255,255,255,.10) 0 2px, transparent 3px);
-      filter: blur(.1px);
-    }
+        .header::after {
+            content: '🎭';
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.1;
+            bottom: -20px;
+            left: -20px;
+            animation: float 4s ease-in-out infinite;
+        }
 
-    .wrap{
-      min-height: 100%;
-      display: grid;
-      place-items: center;
-      padding: 28px 16px;
-    }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
 
-    .poster{
-      width: min(980px, 100%);
-      border-radius: 28px;
-      border: 1px solid var(--stroke);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
-      box-shadow:
-        0 30px 80px rgba(0,0,0,.55),
-        inset 0 1px 0 rgba(255,255,255,.10);
-      overflow: hidden;
-      position: relative;
-    }
+        .school-logo {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
 
-    /* Bandeau haut “arcade” */
-    .topbar{
-      padding: 22px 22px 18px;
-      display:flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      background:
-        linear-gradient(90deg,
-          rgba(124,77,255,.25),
-          rgba(0,211,255,.18),
-          rgba(255,79,216,.18));
-      border-bottom: 1px solid rgba(255,255,255,.10);
-    }
+        h1 {
+            color: white;
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight: 700;
-      letter-spacing: .2px;
-    }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 24px;
+            font-weight: 300;
+        }
 
-    .logo{
-      width: 44px; height: 44px;
-      border-radius: 14px;
-      background:
-        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.30), transparent 60%),
-        linear-gradient(135deg, rgba(124,77,255,.85), rgba(0,211,255,.75));
-      border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 10px 20px rgba(0,0,0,.35);
-      position: relative;
-      overflow:hidden;
-    }
-    .logo::after{
-      content:"";
-      position:absolute; inset:-40% -20%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
-      transform: rotate(25deg);
-    }
+        .content {
+            padding: 40px 30px;
+        }
 
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(0,0,0,.18);
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 14px;
-      white-space: nowrap;
-    }
+        .theme-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+        }
 
-    .dot{
-      width: 8px; height: 8px;
-      border-radius: 999px;
-      background: var(--c5);
-      box-shadow: 0 0 0 4px rgba(34,197,94,.18);
-    }
+        .theme-section h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
 
-    .content{
-      padding: 26px 22px 22px;
-      display:grid;
-      grid-template-columns: 1.35fr .85fr;
-      gap: 18px;
-    }
+        .theme-section p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
 
-    @media (max-width: 860px){
-      .content{ grid-template-columns: 1fr; }
-      .pill{ justify-content:center; width: 100%; }
-      .topbar{ flex-direction: column; align-items: stretch; }
-      .brand{ justify-content:center; }
-    }
+        .dates-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
 
-    .headline{
-      padding: 18px 18px 16px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-    }
+        .dates-section h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    h1{
-      margin: 0 0 8px 0;
-      font-size: clamp(30px, 4.2vw, 52px);
-      line-height: 1.03;
-      letter-spacing: -0.6px;
-    }
+        .date-info {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+        }
 
-    .kicker{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
+        .prize-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
 
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.16);
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 14px;
-    }
+        .prize-section h3 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-    .badge{
-      width: 12px; height: 12px;
-      border-radius: 4px;
-      background: var(--c2);
-      box-shadow: 0 0 0 4px rgba(0,211,255,.16);
-    }
-    .badge.pink{ background: var(--c3); box-shadow: 0 0 0 4px rgba(255,79,216,.14); }
-    .badge.orange{ background: var(--c4); box-shadow: 0 0 0 4px rgba(255,176,32,.14); }
+        .prize-amount {
+            font-size: 48px;
+            font-weight: bold;
+            color: #d63031;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    .sub{
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.45;
-      max-width: 62ch;
-    }
+        .prize-description {
+            color: #555;
+            font-size: 16px;
+        }
 
-    .right{
-      display:grid;
-      gap: 14px;
-      align-content: start;
-    }
+        .info-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
 
-    .card{
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      padding: 16px;
-    }
+        .info-box p {
+            color: #333;
+            line-height: 1.8;
+            font-size: 16px;
+        }
 
-    .card h2{
-      margin: 0 0 10px 0;
-      font-size: 18px;
-      letter-spacing: .2px;
-    }
+        .footer {
+            background: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+        }
 
-    .list{
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
+        .footer p {
+            margin: 5px 0;
+        }
 
-    .prize{
-      display:flex;
-      gap: 12px;
-      align-items: center;
-      padding: 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(400px 160px at 20% 20%, rgba(255,176,32,.18), transparent 55%),
-        radial-gradient(340px 140px at 85% 50%, rgba(34,197,94,.16), transparent 60%),
-        rgba(0,0,0,.10);
-    }
+        .emoji {
+            font-size: 1.2em;
+        }
 
-    .gift{
-      width: 52px; height: 52px;
-      border-radius: 18px;
-      background:
-        linear-gradient(135deg, rgba(255,176,32,.85), rgba(255,79,216,.75));
-      border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 14px 26px rgba(0,0,0,.35);
-      position: relative;
-      flex: 0 0 auto;
-    }
-    .gift::before, .gift::after{
-      content:"";
-      position:absolute;
-      background: rgba(255,255,255,.26);
-      border-radius: 12px;
-    }
-    .gift::before{ width: 10px; height: 100%; left: 50%; transform: translateX(-50%); top: 0; }
-    .gift::after{ width: 100%; height: 10px; top: 50%; transform: translateY(-50%); left: 0; }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 32px;
+            }
 
-    .prize strong{ font-size: 16px; }
-    .prize p{
-      margin: 2px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.35;
-    }
+            .subtitle {
+                font-size: 20px;
+            }
 
-    .ctaRow{
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
+            .theme-section h2 {
+                font-size: 26px;
+            }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 12px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.08);
-      color: var(--text);
-      font-weight: 700;
-      text-decoration:none;
-      transition: transform .15s ease, background .15s ease;
-      user-select:none;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.11); }
-    .btn:active{ transform: translateY(0px); }
-
-    .btnPrimary{
-      background:
-        linear-gradient(90deg, rgba(124,77,255,.85), rgba(0,211,255,.70));
-      border-color: rgba(255,255,255,.22);
-      box-shadow: 0 18px 30px rgba(0,0,0,.35);
-    }
-
-    .footer{
-      padding: 16px 22px 20px;
-      border-top: 1px solid rgba(255,255,255,.10);
-      display:flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      color: rgba(255,255,255,.62);
-      font-size: 13px;
-    }
-
-    .mini{
-      display:flex; gap: 10px; align-items:center; flex-wrap: wrap;
-    }
-
-    .chip{
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.18);
-      border: 1px solid rgba(255,255,255,.12);
-      color: rgba(255,255,255,.72);
-      font-weight: 600;
-    }
-
-    /* Petit “pixel line” décoratif */
-    .pixels{
-      height: 10px;
-      margin-top: 14px;
-      border-radius: 999px;
-      background:
-        linear-gradient(90deg,
-          rgba(124,77,255,.90) 0 12%,
-          rgba(0,211,255,.90) 12% 28%,
-          rgba(255,79,216,.90) 28% 46%,
-          rgba(255,176,32,.90) 46% 66%,
-          rgba(34,197,94,.90) 66% 100%);
-      opacity: .75;
-    }
-  </style>
+            .prize-amount {
+                font-size: 36px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="confetti" aria-hidden="true"></div>
+    <div class="container">
+        <div class="header">
+            <div class="school-logo">EPC FRIBOURG</div>
+            <h1>Semaine Déguisée</h1>
+            <p class="subtitle">Spéciale Carnaval 2025</p>
+        </div>
 
-  <main class="wrap">
-    <section class="poster" role="region" aria-label="Affiche EPC Fribourg">
-      <header class="topbar">
-        <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <div>
-            <div style="font-size:16px; line-height:1;">EPC Fribourg</div>
-            <div style="font-size:13px; color:rgba(255,255,255,.70); font-weight:600; margin-top:2px;">
-              École Professionnelle Commerciale
+        <div class="content">
+            <div class="theme-section">
+                <h2><span class="emoji">🎮</span> Thème : Jeux-Vidéos <span class="emoji">🕹️</span></h2>
+                <p>Incarne ton personnage ou univers de jeu préféré !</p>
             </div>
-          </div>
-        </div>
 
-        <div class="pill">
-          <span class="dot" aria-hidden="true"></span>
-          <span>Semaine déguisée • 09 → 13 février 2026</span>
-        </div>
-      </header>
-
-      <div class="content">
-        <!-- Colonne gauche -->
-        <div class="headline">
-          <h1>
-            Carnaval à l’EPC 🎭<br/>
-            <span style="color:rgba(255,255,255,.86); font-weight:800;">
-              Thème : Jeux-Vidéos
-            </span>
-          </h1>
-
-          <p class="sub">
-            La semaine <strong>avant les vacances de Carnaval</strong>, on te propose de venir en cours
-            avec ton meilleur look inspiré de l’univers gaming : personnages, skins, consoles, rétro, e-sport…
-            (Le tout en restant respectueux et adapté au cadre scolaire.)
-          </p>
-
-          <div class="kicker">
-            <span class="tag"><span class="badge" aria-hidden="true"></span>Du <strong>lundi 09</strong> au <strong>vendredi 13 février</strong></span>
-            <span class="tag"><span class="badge pink" aria-hidden="true"></span>Concours chaque jour</span>
-            <span class="tag"><span class="badge orange" aria-hidden="true"></span>Ambiance festive (mais pro)</span>
-          </div>
-
-          <div class="pixels" aria-hidden="true"></div>
-
-          <div class="ctaRow">
-            <!-- Boutons “affiche” (tu peux les relier à une page, un QR code, un Insta, etc.) -->
-            <a class="btn btnPrimary" href="#concours" aria-label="Voir les infos du concours">
-              🎮 Infos concours
-            </a>
-            <a class="btn" href="#regles" aria-label="Voir les règles et conseils">
-              ✅ Règles & conseils
-            </a>
-          </div>
-        </div>
-
-        <!-- Colonne droite -->
-        <aside class="right">
-          <div class="card" id="concours">
-            <h2>Concours “Best Costume”</h2>
-            <ul class="list">
-              <li><strong>Chaque jour</strong> : on élit le meilleur déguisement du jour.</li>
-              <li>Critères : créativité, effort, cohérence avec le thème <strong>Jeux-Vidéos</strong>.</li>
-              <li>Annonce du gagnant(e) en fin de journée (selon l’organisation de l’école).</li>
-            </ul>
-
-            <div style="height:12px"></div>
-
-            <div class="prize" aria-label="Prix du concours">
-              <div class="gift" aria-hidden="true"></div>
-              <div>
-                <strong>À gagner : Carte cadeau Fnac • 50.–</strong>
-                <p>Pour récompenser le déguisement le plus stylé de la journée.</p>
-              </div>
+            <div class="dates-section">
+                <h3><span class="emoji">📅</span> Quand ?</h3>
+                <div class="date-info">
+                    <strong>Du 09 au 13 février 2025</strong><br>
+                    Une semaine complète de fun avant les vacances de Carnaval !<br>
+                    Chaque jour, viens déguisé sur le thème des jeux-vidéos.
+                </div>
             </div>
-          </div>
 
-          <div class="card" id="regles">
-            <h2>Règles rapides</h2>
-            <ul class="list">
-              <li>Tenue <strong>respectueuse</strong> et adaptée aux cours.</li>
-              <li>Évite les accessoires dangereux / encombrants.</li>
-              <li>Priorité au confort : tu dois pouvoir suivre la journée normalement.</li>
-              <li>Bonus : un détail “gaming” bien pensé vaut souvent plus qu’un costume trop chargé.</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
+            <div class="prize-section">
+                <h3><span class="emoji">🏆</span> Concours Quotidien</h3>
+                <p style="color: #555; margin-bottom: 10px;">Meilleur déguisement du jour</p>
+                <div class="prize-amount">50.-</div>
+                <p class="prize-description">Carte cadeau FNAC à gagner chaque jour !</p>
+            </div>
 
-      <footer class="footer">
-        <div class="mini">
-          <span class="chip">📍 EPC Fribourg</span>
-          <span class="chip">🗓️ 09–13.02.2026</span>
-          <span class="chip">🎭 Carnaval</span>
-          <span class="chip">🎮 Jeux-Vidéos</span>
+            <div class="info-box">
+                <p><strong><span class="emoji">✨</span> Comment participer ?</strong></p>
+                <p>Viens simplement déguisé en ton personnage de jeu-vidéo favori. Un jury désignera chaque jour le meilleur déguisement qui remportera une carte cadeau FNAC d'une valeur de 50 francs !</p>
+            </div>
+
+            <div class="info-box">
+                <p><strong><span class="emoji">💡</span> Quelques idées :</strong></p>
+                <p>Mario, Luigi, Zelda, Minecraft Steve, Fortnite, Pokémon, Sonic, Lara Croft, Assassin's Creed, Among Us, et bien plus encore !</p>
+            </div>
         </div>
-        <div>
-          <span style="opacity:.9; font-weight:600;">Astuce :</span>
-          un QR code peut être ajouté ici vers Insta/Teams pour les infos pratiques.
+
+        <div class="footer">
+            <p><strong>École Professionnelle Commerciale de Fribourg</strong></p>
+            <p>Prépare ton meilleur costume et que le meilleur gagne ! 🎉</p>
         </div>
-      </footer>
-    </section>
-  </main>
+    </div>
 </body>
 </html>
