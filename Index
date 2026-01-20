@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semaine Déguisée - EPC Fribourg</title>
+    <title>Semaine Déguisée - Jeux Vidéos</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -12,254 +14,417 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Press Start 2P', cursive;
+            background: #5c94fc;
+            color: white;
             min-height: 100vh;
-            padding: 20px;
+            overflow-x: hidden;
+            image-rendering: pixelated;
+            position: relative;
+        }
+
+        /* Style Mario Bros background */
+        .background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .clouds {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.9;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+        }
+
+        .cloud1 {
+            width: 80px;
+            height: 30px;
+            top: 10%;
+            left: 10%;
+            animation: float-cloud 30s linear infinite;
+        }
+
+        .cloud1::before {
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            left: 10px;
+        }
+
+        .cloud1::after {
+            width: 50px;
+            height: 40px;
+            top: -20px;
+            right: 10px;
+        }
+
+        .cloud2 {
+            width: 100px;
+            height: 35px;
+            top: 25%;
+            right: 15%;
+            animation: float-cloud 40s linear infinite;
+        }
+
+        .cloud2::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 15px;
+        }
+
+        .cloud2::after {
+            width: 60px;
+            height: 50px;
+            top: -25px;
+            right: 15px;
+        }
+
+        .cloud3 {
+            width: 90px;
+            height: 32px;
+            top: 70%;
+            left: 20%;
+            animation: float-cloud 35s linear infinite;
+        }
+
+        .cloud3::before {
+            width: 45px;
+            height: 45px;
+            top: -22px;
+            left: 12px;
+        }
+
+        .cloud3::after {
+            width: 55px;
+            height: 45px;
+            top: -22px;
+            right: 12px;
+        }
+
+        @keyframes float-cloud {
+            from {
+                transform: translateX(-200px);
+            }
+            to {
+                transform: translateX(calc(100vw + 200px));
+            }
+        }
+
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+            background: #7c3f00;
+            border-top: 8px solid #d97b00;
+        }
+
+        .brick-pattern {
+            position: absolute;
+            bottom: 80px;
+            width: 100%;
+            height: 40px;
+            background: repeating-linear-gradient(
+                90deg,
+                #d97b00 0px,
+                #d97b00 40px,
+                #7c3f00 40px,
+                #7c3f00 42px
+            );
         }
 
         .container {
-            background: white;
-            max-width: 800px;
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
             position: relative;
+            z-index: 1;
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 30px;
             text-align: center;
+            margin: 40px 0;
+        }
+
+        .game-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .game-btn {
+            background: #000;
+            border: 4px solid #fff;
+            padding: 15px 30px;
+            font-size: 12px;
+            font-family: 'Press Start 2P', cursive;
+            color: #fff;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            box-shadow: 
+                4px 4px 0 #666,
+                8px 8px 0 #333;
             position: relative;
-            overflow: hidden;
         }
 
-        .header::before {
-            content: '🎮';
-            position: absolute;
-            font-size: 150px;
-            opacity: 0.1;
-            top: -20px;
-            right: -20px;
-            animation: float 3s ease-in-out infinite;
+        .game-btn:hover {
+            background: #333;
+            transform: translate(2px, 2px);
+            box-shadow: 
+                2px 2px 0 #666,
+                4px 4px 0 #333;
         }
 
-        .header::after {
-            content: '🎭';
-            position: absolute;
-            font-size: 120px;
-            opacity: 0.1;
-            bottom: -20px;
-            left: -20px;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .school-logo {
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            letter-spacing: 3px;
+        .game-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: none;
         }
 
         h1 {
-            color: white;
-            font-size: 42px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 3rem;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 
+                4px 4px 0 #000,
+                8px 8px 0 rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            line-height: 1.4;
+            letter-spacing: 2px;
         }
 
         .subtitle {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 24px;
-            font-weight: 300;
+            font-size: 0.7rem;
+            margin: 20px auto;
+            line-height: 1.8;
+            max-width: 700px;
+            text-shadow: 2px 2px 0 #000;
         }
 
-        .content {
-            padding: 40px 30px;
+        .date-box {
+            background: #fff;
+            color: #000;
+            padding: 20px 40px;
+            font-size: 2rem;
+            display: inline-block;
+            margin: 30px 0;
+            border: 6px solid #000;
+            box-shadow: 
+                6px 6px 0 #666,
+                12px 12px 0 #333;
+            letter-spacing: 3px;
         }
 
-        .theme-section {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        .content-box {
+            background: rgba(255, 255, 255, 0.95);
+            color: #000;
+            border: 6px solid #000;
             padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
+            margin: 30px 0;
+            box-shadow: 
+                6px 6px 0 #666,
+                12px 12px 0 #333;
+            position: relative;
+        }
+
+        .content-box::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 3px solid #fff;
+            pointer-events: none;
+        }
+
+        .content-box h2 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            color: #000;
             text-align: center;
-            color: white;
+            letter-spacing: 2px;
         }
 
-        .theme-section h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
+        .content-box p {
+            font-size: 0.65rem;
+            line-height: 2;
+            margin-bottom: 15px;
         }
 
-        .theme-section p {
-            font-size: 18px;
-            opacity: 0.95;
-        }
-
-        .dates-section {
-            background: #f8f9fa;
+        .prize-banner {
+            background: #ffd700;
+            color: #000;
             padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            border-left: 5px solid #667eea;
-        }
-
-        .dates-section h3 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .date-info {
-            color: #555;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-
-        .prize-section {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
+            margin: 30px 0;
+            border: 6px solid #000;
             text-align: center;
+            box-shadow: 
+                6px 6px 0 #d4a600,
+                12px 12px 0 #333;
+            position: relative;
         }
 
-        .prize-section h3 {
-            color: #333;
-            font-size: 28px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+        .prize-banner::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 3px solid #fff;
+            pointer-events: none;
+        }
+
+        .prize-banner h3 {
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
         .prize-amount {
-            font-size: 48px;
-            font-weight: bold;
-            color: #d63031;
+            font-size: 1.5rem;
             margin: 15px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            color: #d00000;
+            text-shadow: 2px 2px 0 #000;
         }
 
-        .prize-description {
-            color: #555;
-            font-size: 16px;
+        .pixel-coin {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #ffd700;
+            border: 3px solid #000;
+            border-radius: 50%;
+            margin: 0 10px;
+            animation: spin-coin 2s linear infinite;
         }
 
-        .info-box {
-            background: #e3f2fd;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 4px solid #2196f3;
+        @keyframes spin-coin {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(0.3); }
         }
 
-        .info-box p {
-            color: #333;
-            line-height: 1.8;
-            font-size: 16px;
+        .pixel-star {
+            display: inline-block;
+            font-size: 2rem;
+            animation: twinkle 1s ease-in-out infinite;
         }
 
-        .footer {
-            background: #2d3436;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            font-size: 14px;
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
         }
 
-        .footer p {
-            margin: 5px 0;
-        }
-
-        .emoji {
-            font-size: 1.2em;
-        }
-
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             h1 {
-                font-size: 32px;
+                font-size: 1.8rem;
             }
 
-            .subtitle {
-                font-size: 20px;
+            .date-box {
+                font-size: 1.2rem;
+                padding: 15px 25px;
             }
 
-            .theme-section h2 {
-                font-size: 26px;
+            .game-btn {
+                font-size: 10px;
+                padding: 10px 20px;
             }
 
-            .prize-amount {
-                font-size: 36px;
+            .content-box h2 {
+                font-size: 0.9rem;
+            }
+
+            .content-box p {
+                font-size: 0.55rem;
             }
         }
     </style>
 </head>
 <body>
+    <div class="background">
+        <div class="clouds">
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
+        </div>
+        <div class="brick-pattern"></div>
+        <div class="ground"></div>
+    </div>
+
     <div class="container">
         <div class="header">
-            <div class="school-logo">EPC FRIBOURG</div>
-            <h1>Semaine Déguisée</h1>
-            <p class="subtitle">Spéciale Carnaval 2025</p>
+            <div class="game-buttons">
+                <button class="game-btn">START</button>
+                <button class="game-btn">mENU</button>
+                <button class="game-btn">eXIT</button>
+            </div>
+            
+            <h1>SEMAINE<br>DÉGUISÉE</h1>
+            
+            <div class="date-box">
+                09. - 13.02.2026
+            </div>
+            
+            <p class="subtitle">Une semaine complète de fun avant les<br>vacances de Carnaval !<br><br>Chaque jour, viens déguisé sur le thème des<br>jeux-vidéos.</p>
         </div>
 
-        <div class="content">
-            <div class="theme-section">
-                <h2><span class="emoji">🎮</span> Thème : Jeux-Vidéos <span class="emoji">🕹️</span></h2>
-                <p>Incarne ton personnage ou univers de jeu préféré !</p>
-            </div>
-
-            <div class="dates-section">
-                <h3><span class="emoji">📅</span> Quand ?</h3>
-                <div class="date-info">
-                    <strong>Du 09 au 13 février 2025</strong><br>
-                    Une semaine complète de fun avant les vacances de Carnaval !<br>
-                    Chaque jour, viens déguisé sur le thème des jeux-vidéos.
-                </div>
-            </div>
-
-            <div class="prize-section">
-                <h3><span class="emoji">🏆</span> Concours Quotidien</h3>
-                <p style="color: #555; margin-bottom: 10px;">Meilleur déguisement du jour</p>
-                <div class="prize-amount">50.-</div>
-                <p class="prize-description">Carte cadeau FNAC à gagner chaque jour !</p>
-            </div>
-
-            <div class="info-box">
-                <p><strong><span class="emoji">✨</span> Comment participer ?</strong></p>
-                <p>Viens simplement déguisé en ton personnage de jeu-vidéo favori. Un jury désignera chaque jour le meilleur déguisement qui remportera une carte cadeau FNAC d'une valeur de 50 francs !</p>
-            </div>
-
-            <div class="info-box">
-                <p><strong><span class="emoji">💡</span> Quelques idées :</strong></p>
-                <p>Mario, Luigi, Zelda, Minecraft Steve, Fortnite, Pokémon, Sonic, Lara Croft, Assassin's Creed, Among Us, et bien plus encore !</p>
-            </div>
+        <div class="prize-banner">
+            <span class="pixel-star">★</span>
+            <span class="pixel-coin"></span>
+            <span class="pixel-star">★</span>
+            <h3>CONCOURS<br>Meilleur déguisement du jour</h3>
+            <div class="prize-amount">CARTE CADEAU FNAC<br>50 CHF</div>
+            <p style="font-size: 0.7rem; margin-top: 10px;">À GAGNER !</p>
+            <span class="pixel-star">★</span>
+            <span class="pixel-coin"></span>
+            <span class="pixel-star">★</span>
         </div>
 
-        <div class="footer">
-            <p><strong>École Professionnelle Commerciale de Fribourg</strong></p>
-            <p>Prépare ton meilleur costume et que le meilleur gagne ! 🎉</p>
+        <div class="content-box">
+            <h2>COMMENT PARTICIPER ?</h2>
+            <p>
+                Viens simplement déguisé en ton personnage de jeu-vidéo favori.
+                Un jury désignera chaque jour le meilleur déguisement qui
+                remportera une carte cadeau FNAC d'une valeur de 50 CHF !
+            </p>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.game-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const audio = new Audio();
+                this.style.transform = 'translate(4px, 4px)';
+                this.style.boxShadow = 'none';
+                setTimeout(() => {
+                    this.style.transform = '';
+                    this.style.boxShadow = '4px 4px 0 #666, 8px 8px 0 #333';
+                }, 100);
+            });
+        });
+    </script>
 </body>
 </html>
